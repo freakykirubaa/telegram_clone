@@ -13,6 +13,11 @@ pnpm dev
 # or
 bun dev
 ```
+Website Link : https://telegram-clone-three-kappa.vercel.app/
+
+Functionalities : 
+Dark Mode->Light Mode
+Messages,Chats
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
