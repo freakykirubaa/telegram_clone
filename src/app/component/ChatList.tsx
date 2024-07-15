@@ -49,18 +49,18 @@ const ChatList: React.FC<ChatListProps> = ({ onSelectChat }) => {
         ) : (
           chats.map((chat) => (
             <li
-            key={chat.id}
-            onClick={() => handleChatClick(chat.id)}
-            className={`p-4 cursor-pointer rounded-[6px] ${
-              selectedChatId === chat.id
-                ? "bg-[#766AC8] text-white"
-                : `${
-                    theme === "dark"
-                      ? "text-white hover:bg-[#1C1C1E]"
-                      : "text-black hover:bg-gray-300 "
-                  }`
-            }`}
-          >
+              key={chat.id}
+              onClick={() => handleChatClick(chat.id)}
+              className={`p-4 cursor-pointer rounded-[6px] ${
+                selectedChatId === chat.id
+                  ? "bg-[#766AC8] text-white"
+                  : `${
+                      theme === "dark"
+                        ? "text-white hover:bg-[#1C1C1E]"
+                        : "text-black hover:bg-gray-300 "
+                    }`
+              }`}
+            >
               <div className="flex items-center">
                 <div className="flex-shrink-0 w-10 h-10 bg-[#212121] rounded-full flex items-center justify-center text-white font-bold">
                   {chat.creator.name ? chat.creator.name.charAt(0) : "A"}

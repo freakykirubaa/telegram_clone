@@ -10,11 +10,10 @@ const HamburgerMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  
   return (
     <div className="relative">
       <button className="text-white focus:outline-none" onClick={toggleMenu}>
-      <svg
+        <svg
           className="w-8 h-8"
           fill="none"
           stroke={theme === "dark" ? "white" : "black"}
@@ -84,7 +83,7 @@ const HamburgerMenu = () => {
           </li>
           <li className="py-2 md:py-0">
             <button onClick={toggleTheme} className="hover:underline">
-              {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+              {theme === "dark" ? "Light Mode" : "Dark Mode"}
             </button>
           </li>
           <li className="py-2 md:py-0">

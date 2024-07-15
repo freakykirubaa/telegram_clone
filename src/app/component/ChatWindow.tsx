@@ -1,7 +1,7 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { fetchMessages } from '../lib/api';
-import { useTheme } from '../ThemeContext';
+"use client";
+import { useState, useEffect } from "react";
+import { fetchMessages } from "../lib/api";
+import { useTheme } from "../ThemeContext";
 
 interface Message {
   id: string;
@@ -29,7 +29,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId, onBack }) => {
         const messageData = await fetchMessages(chatId);
         setMessages(messageData || []);
       } catch (error) {
-        console.error('Failed to fetch messages:', error);
+        console.error("Failed to fetch messages:", error);
         setMessages([]);
       }
     };
@@ -38,8 +38,18 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId, onBack }) => {
   }, [chatId]);
 
   return (
-    <div className={`w-full md:w-full h-full ${theme === 'dark' ? 'bg-[#0F0F0F]' : 'bg-white'} flex flex-col`}>
-      <div className={`p-4 text-lg font-semibold ${theme === 'dark' ? 'bg-[#212121] text-white' : 'bg-gray-200 text-black'} flex justify-between items-center`}>
+    <div
+      className={`w-full md:w-full h-full ${
+        theme === "dark" ? "bg-[#0F0F0F]" : "bg-white"
+      } flex flex-col`}
+    >
+      <div
+        className={`p-4 text-lg font-semibold ${
+          theme === "dark"
+            ? "bg-[#212121] text-white"
+            : "bg-gray-200 text-black"
+        } flex justify-between items-center`}
+      >
         <button className="md:hidden text-gray-500" onClick={onBack}>
           Back
         </button>
@@ -47,19 +57,27 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId, onBack }) => {
       </div>
       <div className="p-4 flex-grow overflow-y-auto">
         {messages.length === 0 ? (
-          <div className="text-center text-gray-500">No messages to display.</div>
+          <div className="text-center text-gray-500">
+            No messages to display.
+          </div>
         ) : (
           messages.map((message) => (
             <div
-            key={message.id}
-            className={`p-4 mb-4 rounded-lg text-white max-w-lg ${
-              message.sender_id === 1
-                ? `${theme === "dark" ? "bg-[#766AC8]" : "bg-[#766AC8]"} ml-auto`
-                : `${theme === "dark" ? "bg-[#333333]" : "bg-gray-200 text-black"} mr-auto`
-            }`}
-          >
+              key={message.id}
+              className={`p-4 mb-4 rounded-lg  max-w-lg ${
+                message.sender_id === 1
+                  ? `${
+                      theme === "dark" ? "bg-[#766AC8]" : "bg-[#766AC8]"
+                    } ml-auto`
+                  : `${
+                      theme === "dark"
+                        ? "bg-[#333333] text-white"
+                        : "bg-gray-200 text-black"
+                    } mr-auto`
+              }`}
+            >
               <div className="font-semibold text-[#76B947]">
-                {message.sender.name || 'Anonymous'}
+                {message.sender.name || "Anonymous"}
               </div>
               <div>{message.message}</div>
               <div className="text-xs text-gray-500">
