@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { fetchMessages } from '../lib/api';
+import { useTheme } from '../ThemeContext';
 
 interface Message {
   id: string;
@@ -19,7 +20,7 @@ interface ChatWindowProps {
 
 const ChatWindow: React.FC<ChatWindowProps> = ({ chatId, onBack }) => {
   const [messages, setMessages] = useState<Message[]>([]);
-
+  const { theme } = useTheme();
   useEffect(() => {
     if (!chatId) return;
 
@@ -37,8 +38,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId, onBack }) => {
   }, [chatId]);
 
   return (
-    <div className="w-full md:w-full h-full bg-[#0F0F0F] flex flex-col">
-      <div className="p-4 text-lg font-semibold bg-[#212121] text-white flex justify-between items-center">
+    <div className={`w-full md:w-full h-full ${theme === 'dark' ? 'bg-[#0F0F0F]' : 'bg-white'} flex flex-col`}>
+      <div className={`p-4 text-lg font-semibold ${theme === 'dark' ? 'bg-[#212121] text-white' : 'bg-gray-200 text-black'} flex justify-between items-center`}>
         <button className="md:hidden text-gray-500" onClick={onBack}>
           Back
         </button>
@@ -50,11 +51,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId, onBack }) => {
         ) : (
           messages.map((message) => (
             <div
-              key={message.id}
-              className={`p-4 mb-4 rounded-lg text-white max-w-lg ${
-                message.sender_id === 1 ? 'bg-[#766AC8] ml-auto' : 'bg-[#333333] mr-auto'
-              }`}
-            >
+            key={message.id}
+            className={`p-4 mb-4 rounded-lg text-white max-w-lg ${
+              message.sender_id === 1
+                ? `${theme === "dark" ? "bg-[#766AC8]" : "bg-[#766AC8]"} ml-auto`
+                : `${theme === "dark" ? "bg-[#333333]" : "bg-gray-200 text-black"} mr-auto`
+            }`}
+          >
               <div className="font-semibold text-[#76B947]">
                 {message.sender.name || 'Anonymous'}
               </div>
